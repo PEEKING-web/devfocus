@@ -84,7 +84,7 @@ const AIBreakdownModal = ({ task, isOpen, onClose, onAccept }) => {
               </div>
               <div>
                 <h2 className="text-2xl font-bold text-white">AI Task Breakdown</h2>
-                <p className="text-sm text-[#a0a0a0]">Powered by Claude AI</p>
+                <p className="text-sm text-[#a0a0a0]">Powered by Groq AI</p>
               </div>
             </div>
             <button
@@ -111,7 +111,7 @@ const AIBreakdownModal = ({ task, isOpen, onClose, onAccept }) => {
             <div className="text-center py-12">
               <div className="w-16 h-16 border-4 border-[#00ff88]/20 border-t-[#00ff88] rounded-full animate-spin mx-auto mb-4"></div>
               <p className="text-white font-medium mb-2">Analyzing your task...</p>
-              <p className="text-[#a0a0a0] text-sm">Claude is breaking it down into focused sessions</p>
+              <p className="text-[#a0a0a0] text-sm">AI is breaking it down into focused sessions</p>
             </div>
           )}
 
