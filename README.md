@@ -24,7 +24,7 @@ DevFocus is a full-stack productivity app that combines the Pomodoro Technique w
 
 ## 📸 Screenshots
 
-> Put your screenshots in a folder like: `assets/`
+
 
 Example:
 ![Dashboard](assets/Dashboard.png)
