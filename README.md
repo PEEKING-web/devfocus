@@ -21,12 +21,12 @@ DevFocus is a full-stack productivity app that combines the Pomodoro Technique w
 
 ## 🎥 Demo Video 
 ## COMING SOON
+---
 
 ## 📸 Screenshots
 
 
 
-Example:
 ![Dashboard](assets/Dashboard.png)
 ![Timer](assets/Timer.png)
 ![Analytics](assets/Analytics.png)
