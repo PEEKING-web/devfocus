@@ -44,8 +44,9 @@ DevFocus is a full-stack productivity app that combines the Pomodoro Technique w
 - Persistent timer state using localStorage
 - Circular progress indicator
 - Auto break mode + wellness suggestions
-- Desktop notifications using Web Notifications API
+- Desktop notifications
 
+  
 ### 📊 Analytics Dashboard
 - Daily streak tracking + reset logic
 - Weekly charts using Recharts
