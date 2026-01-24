@@ -17,11 +17,11 @@ const register = async (req, res, next) => {
       });
     }
 
-    // ✅ Check if user already exists
+    // Check if user already exists
     const existingUser = await User.findOne({ email }).select('+otp +otpExpires');
 
     if (existingUser) {
-      // ✅ If user exists but NOT verified → resend OTP instead of blocking
+      // If user exists but NOT verified → resend OTP instead of blocking
       if (!existingUser.isVerified) {
         const otp = generateOTP();
         const otpExpires = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
@@ -47,7 +47,7 @@ const register = async (req, res, next) => {
         });
       }
 
-      // ✅ If already verified → same old response
+      // If already verified → same old response
       return res.status(400).json({
         success: false,
         message: 'User with this email already exists',
@@ -306,7 +306,7 @@ const forgotPassword = async (req, res, next) => {
   try {
   await sendOTPEmail(user.email, otp, user.name);
 } catch (emailError) {
-  console.error('❌ Forgot Password OTP email error:', emailError);
+  console.error('Forgot Password OTP email error:', emailError);
 
   return res.status(500).json({
     success: false,

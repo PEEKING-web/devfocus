@@ -6,7 +6,7 @@ const TaskCard = ({ task, onUpdate, onDelete, onSelect }) => {
   const navigate = useNavigate();
   const [showFullBreakdown, setShowFullBreakdown] = useState(false);
 
-  // Logic preserved: Priority colors updated to match LeetCode theme
+  
   const getPriorityColor = (priority) => {
     switch (priority) {
       case 'high':
@@ -20,7 +20,7 @@ const TaskCard = ({ task, onUpdate, onDelete, onSelect }) => {
     }
   };
 
-  // Logic preserved: Difficulty colors
+  
   const getDifficultyColor = (difficulty) => {
     switch (difficulty) {
       case 1:
@@ -34,7 +34,7 @@ const TaskCard = ({ task, onUpdate, onDelete, onSelect }) => {
     }
   };
 
-  // Logic preserved: Difficulty labels
+  
   const getDifficultyLabel = (difficulty) => {
     switch (difficulty) {
       case 1:

@@ -5,7 +5,7 @@ const StatsCards = ({ stats }) => {
     return null;
   }
 
-  // Logic preserved: Mapping stats to card data with updated LeetCode colors
+  
   const cards = [
     {
       title: 'Total Pomodoros',

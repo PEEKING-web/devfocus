@@ -8,7 +8,7 @@ const CreateTaskModal = ({ isOpen, onClose, onTaskCreated, onAIBreakdown }) => {
     category: '',
     priority: 'medium',
     estimatedPomodoros: 1,
-    useAI: false, // NEW: AI breakdown checkbox
+    useAI: false, 
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');

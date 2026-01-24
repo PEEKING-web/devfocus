@@ -52,7 +52,7 @@ Keep subtasks focused and realistic for 25-minute sessions. Be specific and acti
 
     const aiResponse = response.data.choices[0].message.content;
     
-    // Clean up response - remove markdown code blocks if present
+    // Clean up response
     let cleanText = aiResponse.trim();
     cleanText = cleanText.replace(/```json\n?/g, '');
     cleanText = cleanText.replace(/```\n?/g, '');

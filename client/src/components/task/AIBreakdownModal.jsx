@@ -7,7 +7,7 @@ const AIBreakdownModal = ({ task, isOpen, onClose, onAccept }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // Logic preserved: Trigger generation when modal opens
+  
   useEffect(() => {
     if (isOpen && task) {
       generateBreakdown();
@@ -44,7 +44,7 @@ const AIBreakdownModal = ({ task, isOpen, onClose, onAccept }) => {
     generateBreakdown();
   };
 
-  // Logic preserved: Difficulty colors updated to LeetCode green/orange/red
+  
   const getDifficultyColor = (difficulty) => {
     switch (difficulty) {
       case 1:
@@ -58,7 +58,7 @@ const AIBreakdownModal = ({ task, isOpen, onClose, onAccept }) => {
     }
   };
 
-  // Logic preserved: Original labels
+  
   const getDifficultyLabel = (difficulty) => {
     switch (difficulty) {
       case 1: return 'Easy';
@@ -126,7 +126,7 @@ const AIBreakdownModal = ({ task, isOpen, onClose, onAccept }) => {
 
           {breakdown && !loading && (
             <>
-              {/* Summary Section - LOGIC PRESERVED */}
+              {/* Summary Section */}
               <div className="bg-[#00ff88]/5 border border-[#00ff88]/20 rounded-lg p-4 mb-6">
                 <div className="flex items-center gap-3 mb-2">
                   <Zap className="w-5 h-5 text-[#00ff88]" />
