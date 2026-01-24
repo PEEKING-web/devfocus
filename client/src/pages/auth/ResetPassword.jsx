@@ -70,57 +70,52 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0a0a0a] px-4">
-      <div className="max-w-md w-full">
-        {/* Header */}
+    <div className="min-h-screen flex items-center justify-center bg-[#0a0a0a] px-4 relative">
+      <div className="max-w-md w-full relative z-10">
+        
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-[#00ff88] mb-2">DevFocus</h1>
-          <p className="text-[#a0a0a0]">Enter OTP + new password</p>
+           <h1 className="text-3xl font-bold text-white tracking-tight mb-2">New Password</h1>
+           <p className="text-[#666]">Secure your account with a fresh start.</p>
         </div>
 
-        <div className="bg-[#1a1a1a] border border-[#333333] rounded-lg p-8 shadow-2xl">
-          <h2 className="text-2xl font-bold text-white mb-6">Reset Password</h2>
+        <div className="bg-[#121212] border border-[#333] rounded-2xl p-8 shadow-2xl">
 
           {error && (
-            <div className="bg-red-500/10 border border-red-500/50 rounded-lg p-3 mb-4">
-              <p className="text-red-400 text-sm">{error}</p>
+            <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3 mb-6">
+              <p className="text-red-400 text-sm text-center">{error}</p>
             </div>
           )}
 
           {success && (
-            <div className="bg-[#00ff88]/10 border border-[#00ff88]/50 rounded-lg p-3 mb-4">
-              <p className="text-[#00ff88] text-sm">{success}</p>
+            <div className="bg-[#00ff88]/10 border border-[#00ff88]/20 rounded-lg p-3 mb-6">
+              <p className="text-[#00ff88] text-sm text-center">{success}</p>
             </div>
           )}
 
-          <form onSubmit={handleReset} className="space-y-4">
+          <form onSubmit={handleReset} className="space-y-5">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-[#a0a0a0] mb-2">
+              <label htmlFor="email" className="block text-xs uppercase tracking-wider font-semibold text-[#666] mb-2 ml-1">
                 Email
               </label>
               <input
                 type="email"
                 id="email"
-                className="input-field"
-                placeholder="you@example.com"
+                className="w-full bg-[#0a0a0a] border border-[#333] text-white rounded-lg px-4 py-3 outline-none focus:border-[#00ff88] focus:ring-1 focus:ring-[#00ff88]/50 transition-all opacity-50"
                 value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  if (error) setError('');
-                }}
-                disabled={loading}
+                readOnly
+                disabled
               />
             </div>
 
             <div>
-              <label htmlFor="otp" className="block text-sm font-medium text-[#a0a0a0] mb-2">
-                OTP
+              <label htmlFor="otp" className="block text-xs uppercase tracking-wider font-semibold text-[#666] mb-2 ml-1">
+                OTP Code
               </label>
               <input
                 type="text"
                 id="otp"
-                className="input-field"
-                placeholder="Enter 6-digit OTP"
+                className="w-full bg-[#0a0a0a] border border-[#333] text-white rounded-lg px-4 py-3 outline-none focus:border-[#00ff88] focus:ring-1 focus:ring-[#00ff88]/50 transition-all tracking-widest placeholder-[#333]"
+                placeholder="••••••"
                 value={otp}
                 onChange={(e) => {
                   setOtp(e.target.value);
@@ -133,15 +128,15 @@ const ResetPassword = () => {
             <div>
               <label
                 htmlFor="newPassword"
-                className="block text-sm font-medium text-[#a0a0a0] mb-2"
+                className="block text-xs uppercase tracking-wider font-semibold text-[#666] mb-2 ml-1"
               >
                 New Password
               </label>
               <input
                 type="password"
                 id="newPassword"
-                className="input-field"
-                placeholder="••••••••"
+                className="w-full bg-[#0a0a0a] border border-[#333] text-white rounded-lg px-4 py-3 outline-none focus:border-[#00ff88] focus:ring-1 focus:ring-[#00ff88]/50 transition-all placeholder-[#333]"
+                placeholder="New secure password"
                 value={newPassword}
                 onChange={(e) => {
                   setNewPassword(e.target.value);
@@ -154,37 +149,33 @@ const ResetPassword = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full mt-2 bg-[#00ff88] hover:bg-[#00cc6a] text-black font-bold py-3.5 rounded-lg transition-all transform active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_15px_-3px_rgba(0,255,136,0.3)]"
             >
               {loading ? (
-                <span className="flex items-center justify-center">
-                  <div className="loading-spinner w-5 h-5 mr-2"></div>
+                <span className="flex items-center justify-center gap-2">
+                  <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
                   Resetting...
                 </span>
               ) : (
-                'Reset Password'
+                'Confirm Reset'
               )}
             </button>
           </form>
 
-          <div className="mt-4 flex justify-between items-center">
+          <div className="mt-6 flex justify-between items-center border-t border-[#222] pt-4">
             <button
               onClick={handleResendOtp}
               disabled={resendLoading}
-              className="text-sm text-[#a0a0a0] hover:text-[#00ff88] disabled:opacity-50"
+              className="text-xs text-[#666] hover:text-[#00ff88] transition-colors disabled:opacity-50"
             >
-              {resendLoading ? 'Resending...' : 'Resend OTP'}
+              {resendLoading ? 'Resending...' : 'Resend Code'}
             </button>
 
-            <Link to="/login" className="text-sm text-[#a0a0a0] hover:text-[#00ff88]">
+            <Link to="/login" className="text-xs text-[#666] hover:text-white transition-colors">
               Back to Login
             </Link>
           </div>
         </div>
-
-        <p className="text-center text-[#6b6b6b] text-sm mt-8">
-          Focus better. Code faster. Ship more. 🚀
-        </p>
       </div>
     </div>
   );

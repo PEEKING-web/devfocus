@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import * as authService from '../../services/authService';
-import { Mail, RefreshCw } from 'lucide-react';
+import { Mail, RefreshCw, ShieldCheck } from 'lucide-react';
 
 const VerifyOTP = () => {
   const navigate = useNavigate();
@@ -73,69 +73,73 @@ const VerifyOTP = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0a0a0a] px-4">
-      <div className="max-w-md w-full">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <div className="w-20 h-20 bg-[#00ff88]/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-[#00ff88]/20">
-            <Mail className="w-10 h-10 text-[#00ff88]" />
-          </div>
-          <h1 className="text-4xl font-bold text-[#00ff88] mb-2">Check Your Email</h1>
-          <p className="text-[#a0a0a0]">We sent a verification code to</p>
-          <p className="text-white font-medium">{email}</p>
-        </div>
+    <div className="min-h-screen flex items-center justify-center bg-[#0a0a0a] px-4 relative">
+       {/* Background Decoration */}
+       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#00ff88]/5 rounded-full blur-[128px]" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-[128px]" />
+      </div>
 
-        {/* Verification Card */}
-        <div className="bg-[#1a1a1a] border border-[#333333] rounded-lg p-8 shadow-2xl">
-          <h2 className="text-2xl font-bold text-white mb-6">Enter Verification Code</h2>
+      <div className="max-w-md w-full relative z-10">
+        
+        <div className="bg-[#121212] border border-[#333] rounded-2xl p-8 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)]">
+          
+          <div className="flex justify-center mb-6">
+            <div className="w-16 h-16 bg-[#00ff88]/10 rounded-2xl flex items-center justify-center border border-[#00ff88]/20 rotate-3">
+              <Mail className="w-8 h-8 text-[#00ff88]" />
+            </div>
+          </div>
+
+          <div className="text-center mb-8">
+            <h1 className="text-2xl font-bold text-white mb-2">Check your email</h1>
+            <p className="text-[#888] text-sm">We've sent a verification code to</p>
+            <div className="mt-2 inline-block bg-[#1a1a1a] px-3 py-1 rounded-full border border-[#333]">
+              <p className="text-[#00ff88] text-sm font-mono">{email}</p>
+            </div>
+          </div>
 
           {/* Error Message */}
           {error && (
-            <div className="bg-red-500/10 border border-red-500/50 rounded-lg p-3 mb-4">
+            <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3 mb-6 text-center animate-shake">
               <p className="text-red-400 text-sm">{error}</p>
             </div>
           )}
 
           {/* Success Message */}
           {resendSuccess && (
-            <div className="bg-emerald-500/10 border border-emerald-500/50 rounded-lg p-3 mb-4">
-              <p className="text-[#00ff88] text-sm">New code sent! Check your email.</p>
+            <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3 mb-6 text-center animate-fade-in">
+              <p className="text-[#00ff88] text-sm">New code sent!</p>
             </div>
           )}
 
-          {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* OTP Input */}
             <div>
-              <label htmlFor="otp" className="block text-sm font-medium text-[#a0a0a0] mb-2">
-                6-Digit Code
-              </label>
               <input
                 type="text"
                 id="otp"
                 name="otp"
                 value={otp}
                 onChange={handleChange}
-                className="input-field text-center text-2xl tracking-widest font-bold border-[#333333] focus:border-[#00ff88]"
+                className="w-full bg-[#0a0a0a] border border-[#333] text-white text-center text-3xl font-bold tracking-[0.5em] rounded-xl py-5 outline-none focus:border-[#00ff88] focus:ring-4 focus:ring-[#00ff88]/10 transition-all placeholder-[#222]"
                 placeholder="000000"
                 maxLength="6"
                 disabled={loading}
                 autoFocus
+                autoComplete="off"
               />
-              <p className="text-xs text-[#6b6b6b] mt-2 text-center">
-                Valid for 10 minutes
+              <p className="text-xs text-[#555] mt-3 text-center uppercase tracking-wider">
+                Code expires in 10 minutes
               </p>
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
               disabled={loading || otp.length !== 6}
-              className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-[#00ff88] hover:bg-[#00cc6a] text-black font-bold py-4 rounded-xl transition-all transform active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_-5px_rgba(0,255,136,0.4)]"
             >
               {loading ? (
-                <span className="flex items-center justify-center">
-                  <div className="loading-spinner w-5 h-5 mr-2"></div>
+                <span className="flex items-center justify-center gap-2">
+                  <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
                   Verifying...
                 </span>
               ) : (
@@ -144,24 +148,24 @@ const VerifyOTP = () => {
             </button>
           </form>
 
-          {/* Resend */}
-          <div className="mt-6 text-center">
-            <p className="text-[#a0a0a0] text-sm mb-3">Didn't receive the code?</p>
+          <div className="mt-8 flex items-center justify-between border-t border-[#222] pt-6">
+            <button
+              onClick={() => navigate('/register')}
+              className="text-xs text-[#666] hover:text-white transition-colors"
+            >
+              Change email
+            </button>
+            
             <button
               onClick={handleResend}
               disabled={resending}
-              className="text-[#00ff88] hover:text-[#00cc6a] font-medium text-sm flex items-center gap-2 mx-auto disabled:opacity-50"
+              className="text-xs text-[#00ff88] hover:text-[#00cc6a] font-medium flex items-center gap-1.5 disabled:opacity-50"
             >
-              <RefreshCw className={`w-4 h-4 ${resending ? 'animate-spin' : ''}`} />
+              <RefreshCw className={`w-3 h-3 ${resending ? 'animate-spin' : ''}`} />
               {resending ? 'Sending...' : 'Resend Code'}
             </button>
           </div>
         </div>
-
-        {/* Footer */}
-        <p className="text-center text-[#6b6b6b] text-sm mt-8">
-          Wrong email? <button onClick={() => navigate('/register')} className="text-[#00ff88] hover:text-[#00cc6a]">Go back</button>
-        </p>
       </div>
     </div>
   );

@@ -43,38 +43,39 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0a0a0a] px-4">
-      <div className="max-w-md w-full">
-        {/* Header */}
+    <div className="min-h-screen flex items-center justify-center bg-[#0a0a0a] relative overflow-hidden px-4">
+      {/* Background Ambient Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#00ff88]/5 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="max-w-md w-full relative z-10">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-[#00ff88] mb-2">DevFocus</h1>
-          <p className="text-[#a0a0a0]">Reset your password with OTP</p>
+           <h1 className="text-3xl font-bold text-white tracking-tight mb-2">Recovery</h1>
+           <p className="text-[#666]">Don't worry, happens to the best of us.</p>
         </div>
 
-        <div className="bg-[#1a1a1a] border border-[#333333] rounded-lg p-8 shadow-2xl">
-          <h2 className="text-2xl font-bold text-white mb-6">Forgot Password</h2>
-
+        <div className="bg-[#121212]/80 backdrop-blur-xl border border-[#333] rounded-2xl p-8 shadow-2xl ring-1 ring-white/5">
+          
           {error && (
-            <div className="bg-red-500/10 border border-red-500/50 rounded-lg p-3 mb-4">
-              <p className="text-red-400 text-sm">{error}</p>
+             <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3 mb-6 text-center">
+              <p className="text-red-400 text-sm font-medium">{error}</p>
             </div>
           )}
 
           {success && (
-            <div className="bg-[#00ff88]/10 border border-[#00ff88]/50 rounded-lg p-3 mb-4">
-              <p className="text-[#00ff88] text-sm">{success}</p>
+            <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3 mb-6 text-center">
+              <p className="text-[#00ff88] text-sm font-medium">{success}</p>
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-[#a0a0a0] mb-2">
-                Email
+              <label htmlFor="email" className="block text-xs uppercase tracking-wider font-semibold text-[#666] mb-2 ml-1">
+                Registered Email
               </label>
               <input
                 type="email"
                 id="email"
-                className="input-field"
+                className="w-full bg-[#0a0a0a] border border-[#333] text-white rounded-xl px-4 py-3.5 outline-none focus:border-[#00ff88] focus:ring-1 focus:ring-[#00ff88]/50 transition-all placeholder-[#333]"
                 placeholder="you@example.com"
                 value={email}
                 onChange={(e) => {
@@ -88,32 +89,25 @@ const ForgotPassword = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-white text-black hover:bg-[#00ff88] font-bold py-3.5 rounded-xl transition-all duration-300 transform active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
-                <span className="flex items-center justify-center">
-                  <div className="loading-spinner w-5 h-5 mr-2"></div>
-                  Sending OTP...
+                <span className="flex items-center justify-center gap-2">
+                  <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                  Sending...
                 </span>
               ) : (
-                'Send OTP'
+                'Send Recovery Code'
               )}
             </button>
           </form>
 
-          <div className="mt-6 text-center">
-            <p className="text-[#a0a0a0] text-sm">
-              Remembered your password?{' '}
-              <Link to="/login" className="text-[#00ff88] hover:text-[#00cc6a] font-medium">
-                Back to login
-              </Link>
-            </p>
+          <div className="mt-8 text-center border-t border-[#222] pt-6">
+            <Link to="/login" className="text-sm text-[#888] hover:text-white transition-colors flex items-center justify-center gap-2 group">
+              <span className="group-hover:-translate-x-1 transition-transform">←</span> Back to login
+            </Link>
           </div>
         </div>
-
-        <p className="text-center text-[#6b6b6b] text-sm mt-8">
-          Focus better. Code faster. Ship more. 🚀
-        </p>
       </div>
     </div>
   );
